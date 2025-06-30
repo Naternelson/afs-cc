@@ -4,14 +4,10 @@ import { Layout } from "./Layout";
 import { useEffect } from "react";
 import { IPCChannels } from "../ipc";
 import { MainLayout } from "./MainLayout";
+import { ping } from "./api";
 
 const App = () => {
-  useEffect(() => {
-    console.log("Sending ping to main process");
-    window.ipc.invoke(IPCChannels.PING).then((data: any) => {
-      console.log(data);
-    });
-  }, []);
+  pingBackend();
   return (
     <MainLayout>
       <MainView />
@@ -21,3 +17,12 @@ const App = () => {
 
 const root = createRoot(document.body);
 root.render(<App />);
+
+const pingBackend = () => {
+  useEffect(() => {
+    console.log("Pinging Backend");
+    ping((message) => {
+      console.log("Backend response: " + message);
+    });
+  }, []);
+};

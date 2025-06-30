@@ -48,9 +48,8 @@ const effect = (ref: RefObject<HTMLDivElement>) => {
   const scene = new Three.Scene();
 
   const animate = () => {
-    const { width, height } = resize();
-    console.log({ width, height });
-    renderer.setSize(width, height);
+    // const { width, height } = resize();
+    // renderer.setSize(width, height);
     renderer.render(scene, camera);
   };
 

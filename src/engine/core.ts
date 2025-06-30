@@ -1,13 +1,28 @@
 import { Prettify } from "../utility/type_helpers";
+import { MessageQue } from "./message_que";
+import World from "./world";
 
-export type EngineState = Prettify<"initializing" | "running" | "stopped" | "error" | "paused" | "restarting" | "exiting" | "idle" | "ready" | (string & { __engineState: true })>
+export type EngineState = Prettify<
+  | "initializing"
+  | "running"
+  | "stopped"
+  | "error"
+  | "paused"
+  | "restarting"
+  | "exiting"
+  | "idle"
+  | "ready"
+  | (string & { __engineState: true })
+>;
 
-export default class EngineCore {
+export class EngineCore {
   private _state: EngineState = "idle";
   private _loopInterval = 200;
   private _loopTimeout: number = 30000;
   private _tickId: NodeJS.Timeout | null = null;
   private _nextTickTime: number = 0;
+  private _world = new World();
+  private _messageQue = new MessageQue();
   get state(): EngineState {
     return this._state;
   }
@@ -83,11 +98,11 @@ export default class EngineCore {
 
     // ==== Your future system logic goes here ====
     try {
-        //
+      //
     } catch (error) {
-        console.error("Error in engine loop:", error);
-        this.error();
-        return;
+      console.error("Error in engine loop:", error);
+      this.error();
+      return;
     }
     // await this.runSystems(); <-- to be implemented
 
@@ -98,5 +113,11 @@ export default class EngineCore {
 
     this._nextTickTime = nextTime;
     this._tickId = setTimeout(() => this.loop(), delay);
+  }
+  get messageQue() {
+    return this._messageQue;
+  }
+  get world() {
+    return this._world;
   }
 }
