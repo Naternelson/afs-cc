@@ -16,6 +16,7 @@ export const Renderer = ({ containerProps }: { containerProps?: BoxProps }) => {
         width: "100%",
         height: "100%",
         outline: "1px solid red",
+        overflow: "hidden",
         outlineOffset: -2,
         ...containerProps,
       }}
@@ -48,22 +49,15 @@ const effect = (ref: RefObject<HTMLDivElement>) => {
   const scene = new Three.Scene();
 
   const animate = () => {
-    // const { width, height } = resize();
-    // renderer.setSize(width, height);
     renderer.render(scene, camera);
   };
 
   renderer.setAnimationLoop(animate);
-  //   const obs = new ResizeObserver(resize);
-  //   obs.observe(ref.current);
-
-  window.addEventListener("resize", resize);
 
   return () => {
     scene.clear();
     camera.clear();
     renderer.clear();
     observer.disconnect();
-    window.removeEventListener("reisze", resize);
   };
 };
