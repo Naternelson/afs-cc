@@ -1,8 +1,11 @@
 export const IPCChannels = {
   PING: "ping",
-  ENGINE_START: "engine_start",
-  ENGINE_PAUSE: "engine_pause",
-  ENGINE_CONTROL: "engine/control" 
+  ENGINE_CONTROL: "engine:control",
+  ENGINE_RESET: "engine:reset",
+  ENGINE_INIT: "engine:init",
+  ENGINE_CLOSE: "engine:close",
+  ENGINE_CLOSE_ALL: "engine:close_all",
+  DATA_PALLETS: "data:pallets",
 };
 
-export type IPCChannel = keyof typeof IPCChannels;
+export type IPCChannel = (typeof IPCChannels)[keyof typeof IPCChannels];

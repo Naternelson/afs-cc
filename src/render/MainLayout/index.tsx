@@ -1,8 +1,14 @@
 import { Box, CssBaseline } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { IPCChannels } from "../../ipc";
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
+  useEffect(() => {
+    window.ipc.invoke(IPCChannels.DATA_PALLETS).then((d) => {
+      console.log("Pallets data received:", d);
+    });
+  }, []);
   return (
     <>
       <CssBaseline />
@@ -69,7 +75,9 @@ const ElementsAside = () => {
                 .fill(0)
                 .map((el, i) => {
                   return (
-                    <Box sx={{ cursor: "pointer", my: 1 }}>Entity: {i}</Box>
+                    <Box key={i} sx={{ cursor: "pointer", my: 1 }}>
+                      Entity: {i}
+                    </Box>
                   );
                 })}
             </Box>

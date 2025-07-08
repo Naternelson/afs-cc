@@ -44,7 +44,6 @@ export default class World {
   }
   serialize() {
     return {
-      nextEntityId: this._nextEntityId,
       entities: Array.from(this._entities),
       components: Array.from(this._components.entries()).map(([name, map]) => ({
         name,
@@ -69,18 +68,20 @@ export default class World {
     return result;
   }
   resolveChanges() {
-    const entities = new Set(this._entities);
-    const components: Map<string, Map<number, any>> = new Map(this._components);
-    try {
-      for (const change of this._stagedChanges) {
-        if(change.entity = -1) {
-            
+    const changes = this._stagedChanges;
+    for (const change of changes) {
+      if (change.deleteComponent) {
+        this.removeAllComponentsOfEntity(change.entity);
+      } else if (change.component && change.data !== undefined) {
+        this.addComponent(change.entity, change.component, change.data);
+      } else if (change.component && change.data === undefined) {
+        const map = this._components.get(change.component);
+        if (map) {
+          map.delete(change.entity);
         }
       }
-    } catch {
-      console.log("Failed to resolve changes");
-      return;
     }
+    this._stagedChanges = [];
   }
   clearEntities(): void {
     this._entities.clear();
