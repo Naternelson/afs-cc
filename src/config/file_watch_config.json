@@ -1,0 +1,112 @@
+{
+  "watch": [
+    {
+      "delimiter": "|",
+      "path": "\\\\sftp.afstores.com\\SymboticSFTP\\Prod\\SYM_CREATED\\ARCHIVE\\NotifyPalletComplete_*.dat",
+      "fileNameDelimiter": "_",
+      "type": "notify-pallet-complete",
+      "fileNameFields": [
+        {
+          "name": "file_type",
+          "type": "string",
+          "required": true,
+          "label": "File Type",
+          "description": "File type indicator (e.g., NotifyPalletComplete)"
+        },
+        {
+          "name": "file_date_timestamp",
+          "type": "datetime",
+          "required": true,
+          "description": "The date the file was written, in YYYYMMDD format"
+        },
+        {
+          "name": "file_time_timestamp",
+          "type": "datetime",
+          "required": true,
+          "description": "When the file was written to SFTP"
+        }
+      ],
+      "fields": [
+        {
+          "name": "order_id",
+          "label": "Order ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "build_type",
+          "label": "Build Type",
+          "type": "string",
+          "required": true,
+          "enum": ["AUTO", "MANUAL"]
+        },
+        {
+          "name": "internal_pallet_number",
+          "label": "Internal Pallet Number",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "cubic_feet",
+          "label": "Cubic Feet",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "lane",
+          "label": "Lane",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "pallet_number_in_order",
+          "label": "Pallet Number in Order",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "total_pallets_in_order",
+          "label": "Total Pallets in Order",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "weight_lbs",
+          "label": "Weight (lbs)",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "case_sequence_number",
+          "label": "Case Sequence Number",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "gtin",
+          "label": "GTIN",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "sku",
+          "label": "SKU",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "quantity",
+          "label": "Quantity",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ship_pallet_id",
+          "label": "Ship Pallet ID",
+          "type": "string",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
