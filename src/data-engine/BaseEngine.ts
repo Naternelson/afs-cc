@@ -4,10 +4,11 @@ import { EventBus } from "./EventBus";
 import { PluginRegistry } from "./PluginRegistry";
 import { QueryBuilder } from "./QueryBuilder";
 import { SystemManager } from "./SystemManager";
+import { ErrorSystem } from "./systems/ErrorSystem";
 import { TickLoop } from "./TickLoop";
 import { ComponentClass, EnginePlugin } from "./types";
 
-export class DataEngine {
+export class BaseEngine {
   private initialized = false;
   private paused = false;
   entities = new EntityManager(this);
@@ -16,6 +17,9 @@ export class DataEngine {
   eventBus = new EventBus(this);
   loop = new TickLoop(this);
   plugins = new PluginRegistry(this);
+  constructor() {
+    this.systems.add(new ErrorSystem(this), 0, ["error"]);
+  }
   update(dt: number): void {
     if (this.paused) return;
     this.systems.update(dt);

@@ -1,7 +1,7 @@
-import { DataEngine } from "./DataEngine";
+import { BaseEngine } from "./BaseEngine";
 
 export class TickLoop {
-  private engine: DataEngine;
+  private engine: BaseEngine;
   private running = false;
   private lastTime = 0;
   private accumulator = 0;
@@ -10,7 +10,7 @@ export class TickLoop {
   private intervalMs: number;
   private interpolation = 0;
 
-  constructor(engine: DataEngine, updatesPerSecond = 60) {
+  constructor(engine: BaseEngine, updatesPerSecond = 60) {
     this.engine = engine;
     this.fixedDt = 1 / updatesPerSecond; // e.g. 60Hz = 16.67ms
   }

@@ -1,14 +1,14 @@
-import { DataEngine } from "./DataEngine";
+import { BaseEngine } from "./BaseEngine";
 import { PluginContext } from "./PluginContext";
 import { System } from "./System";
 import { EnginePlugin } from "./types";
 
 export class PluginRegistry {
-  private engine: DataEngine;
+  private engine: BaseEngine;
   private installed = new Map<string, EnginePlugin>();
   private contexts = new Map<string, PluginContext>(); // plugin name → context
 
-  constructor(engine: DataEngine) {
+  constructor(engine: BaseEngine) {
     this.engine = engine;
   }
 

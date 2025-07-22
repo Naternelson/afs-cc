@@ -1,4 +1,4 @@
-import { DataEngine } from "./DataEngine";
+import { BaseEngine } from "./BaseEngine";
 import { System } from "./System";
 
 type RegisteredSystem = {
@@ -9,11 +9,11 @@ type RegisteredSystem = {
 };
 
 export class SystemManager {
-  private engine: DataEngine;
+  private engine: BaseEngine;
   enableProfiler = false;
   private systems: RegisteredSystem[] = [];
 
-  constructor(engine: DataEngine) {
+  constructor(engine: BaseEngine) {
     this.engine = engine;
   }
 

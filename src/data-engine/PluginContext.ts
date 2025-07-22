@@ -1,14 +1,14 @@
-import { DataEngine } from "./DataEngine";
+import { BaseEngine } from "./BaseEngine";
 import { PluginRegistry } from "./PluginRegistry";
 import { System } from "./System";
 
 export class PluginContext {
   private systems: System[] = [];
-  private engine: DataEngine;
+  private engine: BaseEngine;
   private registry: PluginRegistry;
   public readonly name: string;
 
-  constructor(name: string, engine: DataEngine, registry: PluginRegistry) {
+  constructor(name: string, engine: BaseEngine, registry: PluginRegistry) {
     this.name = name;
     this.engine = engine;
     this.registry = registry;

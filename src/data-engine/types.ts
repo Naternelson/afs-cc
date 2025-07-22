@@ -1,4 +1,3 @@
-import { DataEngine } from "./DataEngine";
 import { PluginContext } from "./PluginContext";
 
 export type EntityId = number;
