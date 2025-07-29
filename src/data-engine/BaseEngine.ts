@@ -5,6 +5,7 @@ import { PluginRegistry } from "./PluginRegistry";
 import { QueryBuilder } from "./QueryBuilder";
 import { SystemManager } from "./SystemManager";
 import { ErrorSystem } from "./systems/ErrorSystem";
+import { TestSystem } from "./systems/TestSystem";
 import { TickLoop } from "./TickLoop";
 import { ComponentClass, EnginePlugin } from "./types";
 
@@ -19,6 +20,7 @@ export class BaseEngine {
   plugins = new PluginRegistry(this);
   constructor() {
     this.systems.add(new ErrorSystem(this), 0, ["error"]);
+    this.systems.add(new TestSystem(this));
   }
   update(dt: number): void {
     if (this.paused) return;
@@ -78,5 +80,8 @@ export class BaseEngine {
     this.plugins.clear();
     this.initialized = false;
     this.eventBus.emit({ type: "engine:destroy" });
+  }
+  get tickMeta() {
+    return this.loop.meta;
   }
 }

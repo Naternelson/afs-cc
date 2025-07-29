@@ -9,7 +9,14 @@ export type EngineEvent = {
   payload?: any;
 };
 
-export type EventCallback = (event: EngineEvent) => void;
+export type TickMetaData = {
+  tick: number;
+  delta: number;
+  time: DOMHighResTimeStamp;
+  interpolation: number;
+};
+
+export type EventCallback = (event: EngineEvent, meta: TickMetaData) => void;
 
 export interface EnginePlugin {
   name: string;

@@ -1,4 +1,5 @@
 import { BaseEngine } from "./BaseEngine";
+import { TickMetaData } from "./types";
 
 export class TickLoop {
   private engine: BaseEngine;
@@ -28,25 +29,43 @@ export class TickLoop {
     this.timer = null;
   }
 
+  private tickId = 0;
+
   private tick = (): void => {
     if (!this.running) return;
 
     const now = performance.now();
-    let delta = (now - this.lastTime) / 1000; // seconds
+    let delta = (now - this.lastTime) / 1000;
     this.lastTime = now;
 
-    // Clamp huge delta (e.g. after long pause)
     if (delta > 0.5) delta = this.fixedDt;
-
     this.accumulator += delta;
 
     while (this.accumulator >= this.fixedDt) {
+      this.tickId++;
       this.engine.update(this.fixedDt);
       this.accumulator -= this.fixedDt;
     }
+
     this.interpolation = this.accumulator / this.fixedDt;
     this.timer = setTimeout(this.tick, this.intervalMs);
   };
+
+  getTickId(): number {
+    return this.tickId;
+  }
+
+  resetTickId(): void {
+    this.tickId = 0;
+  }
+  get meta(): TickMetaData {
+    return {
+      tick: this.tickId,
+      time: this.lastTime,
+      interpolation: this.interpolation,
+      delta: this.fixedDt,
+    };
+  }
 
   // Optionally: render or pass interpolation (accumulator / fixedDt) here
 

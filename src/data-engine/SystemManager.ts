@@ -24,7 +24,7 @@ export class SystemManager {
       enabled: true,
       tags,
     });
-    system.onInit();
+    system.onInit?.();
     this.sortSystems();
   }
 
