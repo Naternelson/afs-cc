@@ -1,5 +1,5 @@
 import { BaseEngine } from "./BaseEngine";
-import { EngineEvent, EventCallback } from "./types";
+import { EngineEvent, EventCallback } from "../types";
 
 type Subscriber = {
   event: string;

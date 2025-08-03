@@ -1,3 +1,3 @@
-import { BaseEngine } from "../../data-engine"
+import { BaseEngine } from "../../data-engine/engine";
 
-export const engine = new BaseEngine()
+export const engine = new BaseEngine();

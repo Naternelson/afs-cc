@@ -1,7 +1,7 @@
 import { BaseEngine } from "./BaseEngine";
 import { PluginContext } from "./PluginContext";
 import { System } from "./System";
-import { EnginePlugin } from "./types";
+import { EnginePlugin } from "../types";
 
 export class PluginRegistry {
   private engine: BaseEngine;

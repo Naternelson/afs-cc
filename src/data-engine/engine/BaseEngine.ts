@@ -1,13 +1,13 @@
+import { ErrorSystem } from "../systems/ErrorSystem";
+import { TestSystem } from "../systems/TestSystem";
+import { ComponentClass, EnginePlugin } from "../types";
 import { ComponentManager } from "./ComponentManager";
 import { EntityManager } from "./EntityManager";
 import { EventBus } from "./EventBus";
 import { PluginRegistry } from "./PluginRegistry";
 import { QueryBuilder } from "./QueryBuilder";
 import { SystemManager } from "./SystemManager";
-import { ErrorSystem } from "./systems/ErrorSystem";
-import { TestSystem } from "./systems/TestSystem";
 import { TickLoop } from "./TickLoop";
-import { ComponentClass, EnginePlugin } from "./types";
 
 export class BaseEngine {
   private initialized = false;

@@ -1,4 +1,4 @@
-import { PluginContext } from "./PluginContext";
+import { PluginContext } from "./engine/PluginContext";
 
 export type EntityId = number;
 

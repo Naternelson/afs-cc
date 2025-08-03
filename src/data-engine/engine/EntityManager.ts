@@ -1,5 +1,5 @@
 import { BaseEngine } from "./BaseEngine";
-import { EntityId } from "./types";
+import { EntityId } from "../types";
 
 export class EntityManager {
   private entities: Set<number> = new Set();

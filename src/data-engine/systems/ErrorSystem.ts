@@ -1,4 +1,4 @@
-import { System } from "../System";
+import { System } from "../engine/System";
 import { EngineEvent } from "../types";
 
 export class ErrorSystem extends System {

@@ -1,5 +1,5 @@
 import { BaseEngine } from "./BaseEngine";
-import { TickMetaData } from "./types";
+import { TickMetaData } from "../types";
 
 export class TickLoop {
   private engine: BaseEngine;

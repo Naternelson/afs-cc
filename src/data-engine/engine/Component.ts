@@ -1,4 +1,4 @@
-import { EntityId } from "./types";
+import { EntityId } from "../types";
 
 export class Component {
   static id?: string;

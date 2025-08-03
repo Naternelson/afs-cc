@@ -1,7 +1,7 @@
-import { System } from "../System";
+import { System } from "../engine/System";
 
 export class TestSystem extends System {
   onUpdate(dt: number): void {
-    console.log(`Tick: ${this.engine.tickMeta.tick} \n\tDelta: ${dt}`);
+    // console.log(`Tick: ${this.engine.tickMeta.tick} \n\tDelta: ${dt}`);
   }
 }

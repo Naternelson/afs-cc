@@ -1,5 +1,5 @@
 import { BaseEngine } from "./BaseEngine";
-import { ComponentClass, EntityId } from "./types";
+import { ComponentClass, EntityId } from "../types";
 
 export class QueryBuilder<T extends any[]> {
   private engine: BaseEngine;
